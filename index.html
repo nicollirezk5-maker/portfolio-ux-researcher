@@ -3,674 +3,593 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nicolli Rezk | UX Designer & Researcher</title>
+<title>Nicolli Rezk | UX Research-driven Product Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --cream: #FAF8F5;
-    --ink: #1C1410;
-    --ink-soft: #5C4A40;
-    --ink-muted: #A08878;
-    --accent: #FF5F1F;
-    --accent-light: #FDE8DC;
-    --accent2: #F2447B;
-    --border: rgba(28,20,16,0.1);
-    --serif: 'DM Serif Display', serif;
-    --sans: 'DM Sans', sans-serif;
+    --pink: #FF007A;
+    --black: #000000;
+    --white: #FFFFFF;
+    --bg: #FDF2F8;
+    --border: 2px solid var(--black);
+    --shadow: 5px 5px 0px var(--black);
+    --font-main: 'DM Sans', sans-serif;
+    --font-display: 'Archivo Black', sans-serif;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: var(--sans);
-    background: var(--cream);
-    color: var(--ink);
-    font-size: 16px;
-    line-height: 1.7;
+    font-family: var(--font-main);
+    background: var(--bg);
+    color: var(--black);
+    line-height: 1.6;
     overflow-x: hidden;
+  }
+
+  /* MARQUEE */
+  .marquee {
+    background: var(--black);
+    color: var(--pink);
+    padding: 0.75rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: var(--border);
+  }
+  .marquee-content {
+    display: inline-block;
+    animation: marquee 25s linear infinite;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 
   /* NAV */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.25rem 4rem;
-    background: rgba(250,248,245,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
+    background: var(--white);
+    border-bottom: var(--border);
+    position: sticky; top: 0; z-index: 1000;
   }
   .nav-logo {
-    font-family: var(--serif);
-    font-size: 1.25rem;
-    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 1.5rem;
     text-decoration: none;
-    letter-spacing: -0.01em;
+    color: var(--black);
   }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-right { display: flex; align-items: center; gap: 3rem; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
   .nav-links a {
-    text-decoration: none;
-    font-size: 0.875rem;
-    color: var(--ink-soft);
-    font-weight: 400;
-    letter-spacing: 0.02em;
+    text-decoration: none; color: var(--black); font-weight: 700;
+    font-size: 0.85rem; text-transform: uppercase;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--accent); }
+  .nav-links a:hover { color: var(--pink); }
+
+  /* LANG SWITCHER */
+  .lang-switcher {
+    display: flex; gap: 0.25rem; border: var(--border); padding: 2px; background: var(--black);
+  }
+  .lang-btn {
+    background: none; border: none; color: var(--white);
+    font-family: var(--font-display); font-size: 0.65rem;
+    padding: 0.25rem 0.5rem; cursor: pointer;
+  }
+  .lang-btn.active { background: var(--pink); color: var(--white); }
 
   /* SECTIONS */
-  section { padding: 6rem 4rem; max-width: 1100px; margin: 0 auto; }
-  section + section { border-top: 1px solid var(--border); }
+  section { padding: 6rem 4rem; max-width: 1300px; margin: 0 auto; }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    margin-bottom: 3rem;
+    display: inline-block;
+    border-bottom: 4px solid var(--pink);
+    padding-bottom: 0.5rem;
+  }
+
+  .grid-layout {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem;
+  }
+  .card {
+    background: var(--white); border: var(--border); padding: 2.5rem;
+    box-shadow: var(--shadow); transition: transform 0.2s;
+  }
+  .card:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0px var(--black); }
 
   /* HERO */
   #home {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding-top: 8rem;
-    max-width: 1100px;
-    margin: 0 auto;
-    gap: 4rem;
+    padding: 8rem 4rem; display: flex; flex-direction: column; align-items: flex-start;
+    background: var(--white); border-bottom: var(--border);
   }
-  .hero-left { flex: 1; }
   .hero-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--accent2); margin-bottom: 2rem;
-  }
-  .hero-tag::before {
-    content: ''; display: block;
-    width: 24px; height: 1px; background: var(--accent2);
+    background: var(--pink); color: var(--white); padding: 0.25rem 0.75rem;
+    font-weight: 700; font-size: 0.8rem; text-transform: uppercase;
+    margin-bottom: 1.5rem; border: var(--border);
   }
   .hero-heading {
-    font-family: var(--serif);
-    font-size: clamp(2.4rem, 5vw, 3.8rem);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin-bottom: 1.5rem;
+    font-family: var(--font-display); font-size: clamp(2.2rem, 7vw, 4.5rem);
+    line-height: 1; margin-bottom: 1.5rem; max-width: 950px;
   }
-  .hero-heading em {
-    font-style: italic;
-    color: var(--accent);
-  }
-  .hero-sub {
-    font-size: 1.05rem;
-    color: var(--ink-soft);
-    max-width: 480px;
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-  }
-  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary {
-    display: inline-block;
-    padding: 0.875rem 2rem;
-    background: var(--accent);
-    color: #fff;
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    transition: background 0.2s, transform 0.15s;
-  }
-  .btn-primary:hover { background: var(--accent2); color: #0A0A0F; transform: translateY(-1px); }
-  .btn-secondary {
-    display: inline-block;
-    padding: 0.875rem 2rem;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    transition: background 0.2s, color 0.2s;
-  }
-  .btn-secondary:hover { background: var(--accent); color: #fff; }
+  .hero-sub { font-size: clamp(1rem, 2vw, 1.2rem); max-width: 750px; margin-bottom: 2.5rem; color: #333; }
 
-  .hero-right {
-    flex-shrink: 0;
-    width: 340px;
+  /* EDUCATION */
+  .edu-list { display: flex; flex-direction: column; gap: 2rem; }
+  .edu-item { border-left: 3px solid var(--black); padding-left: 1.5rem; position: relative; }
+  .edu-item::before {
+    content: ''; position: absolute; left: -10px; top: 0;
+    width: 16px; height: 16px; background: var(--pink); border: var(--border);
   }
-  .hero-stats {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 1px; background: var(--border);
-    border: 1px solid var(--border);
-  }
-  .stat-box {
-    background: #12121A;
-    padding: 1rem 1.25rem;
-  }
-  .stat-num {
-    font-family: var(--serif);
-    font-size: 1.6rem;
-    color: var(--accent);
-    display: block;
-  }
-  .stat-label {
-    font-size: 0.75rem;
-    color: var(--ink-muted);
-    letter-spacing: 0.04em;
-  }
-
-  /* ABOUT */
-  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-  .section-eyebrow {
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .section-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--accent); opacity: 0.3; max-width: 60px; }
-  .section-title {
-    font-family: var(--serif);
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-  }
-  .about-text { color: var(--ink-soft); line-height: 1.9; margin-bottom: 1.5rem; }
-
-  .lang-list { list-style: none; margin: 1.5rem 0; }
-  .lang-list li {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0.75rem 0; border-bottom: 1px solid var(--border);
-    font-size: 0.95rem;
-  }
-  .lang-level {
-    font-size: 0.75rem;
-    background: var(--accent-light); color: var(--accent);
-    padding: 2px 10px; letter-spacing: 0.04em;
-  }
-
-  .cert-list { list-style: none; }
-  .cert-item {
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .cert-item:last-child { border-bottom: none; }
-  .cert-name { font-weight: 500; font-size: 0.95rem; margin-bottom: 2px; }
-  .cert-meta { font-size: 0.8rem; color: var(--ink-muted); }
-
-  /* EXPERIENCE */
-  .exp-list { display: flex; flex-direction: column; gap: 0; }
-  .exp-item {
-    display: grid; grid-template-columns: 180px 1fr;
-    gap: 3rem; padding: 2.5rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .exp-item:first-child { border-top: 1px solid var(--border); }
-  .exp-date { font-size: 0.8rem; color: var(--ink-muted); padding-top: 4px; line-height: 1.6; }
-  .exp-company { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-top: 4px; }
-  .exp-role { font-family: var(--serif); font-size: 1.3rem; margin-bottom: 0.5rem; }
-  .exp-desc { color: var(--ink-soft); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; }
-  .exp-metrics {
-    display: flex; flex-wrap: wrap; gap: 8px;
-  }
-  .metric-pill {
-    font-size: 0.78rem;
-    padding: 4px 12px;
-    background: var(--accent-light);
-    color: var(--accent);
-    font-weight: 500;
-  }
+  .edu-inst { font-family: var(--font-display); font-size: 1.1rem; }
+  .edu-course { font-weight: 700; color: var(--pink); font-size: 0.95rem; text-transform: uppercase; margin-bottom: 0.25rem; }
+  .edu-details { font-size: 0.85rem; color: #555; }
 
   /* CASE STUDIES */
-  #cases { padding: 6rem 4rem; max-width: 1100px; margin: 0 auto; }
-  .cases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin-top: 3rem; }
-  .case-card {
-    background: #0F0F17;
-    padding: 2.5rem;
-    transition: background 0.25s;
-    cursor: default;
+  .case-card { grid-column: span 12; display: grid; grid-template-columns: 1fr 1fr; padding: 0; overflow: hidden; }
+  .case-img { 
+    height: 100%; min-height: 400px; background: var(--black); border-right: var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--pink); font-family: var(--font-display); font-size: clamp(4rem, 10vw, 6rem);
   }
-  .case-card:hover { background: var(--accent); }
-  .case-card:hover .case-num,
-  .case-card:hover .case-title,
-  .case-card:hover .case-desc,
-  .case-card:hover .case-tag { color: #fff; }
-  .case-card:hover .case-tag { background: rgba(255,255,255,0.2); }
-  .case-card:hover .case-link { color: #fff; }
-  .case-num {
-    font-family: var(--serif);
-    font-size: 0.85rem;
-    color: var(--ink-muted);
-    margin-bottom: 1.5rem;
-    transition: color 0.25s;
+  .case-content { padding: clamp(1.5rem, 5vw, 3rem); display: flex; flex-direction: column; justify-content: center; }
+  .case-tag { font-weight: 700; color: var(--pink); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+  .case-title { font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 1.5rem; line-height: 1.1; }
+  .case-text { margin-bottom: 2rem; font-size: 1rem; }
+
+  /* MODAL */
+  #case-modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255, 0, 122, 0.15); backdrop-filter: blur(10px);
+    display: none; justify-content: center; align-items: center; z-index: 2000; padding: 1rem;
   }
-  .case-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
-  .case-tag {
-    font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase;
-    padding: 3px 10px; background: var(--accent-light); color: var(--accent);
-    transition: background 0.25s, color 0.25s;
+  .modal-container {
+    background: var(--white); width: 100%; max-width: 900px; max-height: 90vh;
+    border: 4px solid var(--black); box-shadow: 10px 10px 0px var(--black);
+    overflow-y: auto; padding: clamp(1.5rem, 5vw, 4rem); position: relative;
   }
-  .case-title {
-    font-family: var(--serif);
-    font-size: 1.4rem; line-height: 1.25;
-    margin-bottom: 0.75rem;
-    transition: color 0.25s;
+  .close-modal {
+    position: sticky; top: 0; float: right; margin-bottom: 1rem;
+    background: var(--black); color: var(--white);
+    border: none; padding: 8px 16px; font-family: var(--font-display);
+    cursor: pointer; z-index: 10; font-size: 0.75rem;
   }
-  .case-desc {
-    font-size: 0.9rem; color: var(--ink-soft);
-    line-height: 1.75; margin-bottom: 1.5rem;
-    transition: color 0.25s;
-  }
-  .case-outcomes {
-    font-size: 0.82rem; color: var(--ink-muted);
-    border-top: 1px solid var(--border);
-    padding-top: 1rem; margin-bottom: 1rem;
-    transition: border-color 0.25s;
-  }
-  .case-card:hover .case-outcomes { border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.65); }
-  .outcome-row { display: flex; justify-content: space-between; padding: 3px 0; }
-  .outcome-val { font-weight: 500; color: var(--accent2); }
-  .case-card:hover .outcome-val { color: #fff; font-weight: 600; }
-  .case-link {
-    font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--ink-muted); text-decoration: none;
-    display: inline-flex; align-items: center; gap: 6px;
-    transition: color 0.2s;
-  }
-  .case-link::after { content: '→'; }
+  .report-header { border-bottom: 4px solid var(--pink); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+  .report-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .report-label { font-family: var(--font-display); color: var(--pink); font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.5rem; margin-top: 1.5rem; }
 
   /* SKILLS */
-  .skills-wrapper { display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; align-items: start; margin-top: 3rem; }
-  .skill-category { margin-bottom: 2.5rem; }
-  .skill-cat-label {
-    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 1rem;
-  }
-  .skill-item {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 0.6rem 0; border-bottom: 1px solid var(--border);
-    font-size: 0.9rem; color: var(--ink-soft);
-  }
-  .skill-bar-bg { width: 80px; height: 2px; background: var(--border); }
-  .skill-bar-fill { height: 100%; background: var(--accent2); }
-
-  .skills-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .skills-container { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .skill-tag {
-    padding: 0.5rem 1.25rem;
-    border: 1px solid var(--border);
-    font-size: 0.85rem;
-    color: var(--ink-soft);
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-    cursor: default;
-  }
-  .skill-tag:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
-
-  /* CONTACT */
-  #contact { text-align: center; }
-  .contact-heading {
-    font-family: var(--serif);
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.25rem;
-    max-width: 600px; margin-left: auto; margin-right: auto;
-  }
-  .contact-sub {
-    color: var(--ink-soft); font-size: 1rem;
-    max-width: 420px; margin: 0 auto 2.5rem;
-  }
-  .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 3rem; }
-  .contact-pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 0.75rem 1.5rem;
-    border: 1px solid var(--border);
-    color: var(--ink-soft); text-decoration: none;
-    font-size: 0.875rem;
-    transition: border-color 0.2s, color 0.2s;
-  }
-  .contact-pill:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2rem 4rem;
-    display: flex; justify-content: space-between; align-items: center;
-    max-width: 1100px; margin: 0 auto;
-    font-size: 0.8rem; color: var(--ink-muted);
+    padding: 0.4rem 0.75rem; border: var(--border); font-weight: 700;
+    font-size: 0.7rem; text-transform: uppercase; background: var(--white);
   }
 
-  /* ANIMATIONS */
-  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .fade-in.visible { opacity: 1; transform: none; }
+  .tool-card { grid-column: span 3; padding: 1.5rem; text-align: center; }
+  .tool-name { font-family: var(--font-display); font-size: 0.9rem; margin-top: 0.5rem; }
 
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    section, #cases { padding: 4rem 1.5rem; }
-    #home { flex-direction: column; padding: 7rem 1.5rem 4rem; min-height: auto; }
-    .hero-right { width: 100%; }
-    .hero-stats { grid-template-columns: repeat(2, 1fr); }
-    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
-    .cases-grid { grid-template-columns: 1fr; }
-    .skills-wrapper { grid-template-columns: 1fr; gap: 2rem; }
-    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  .btn-bold {
+    display: inline-block; padding: 1rem 2rem; background: var(--black);
+    color: var(--white); text-decoration: none; font-family: var(--font-display);
+    font-size: 0.85rem; border: var(--border); box-shadow: 4px 4px 0px var(--pink);
+    cursor: pointer; text-align: center;
+  }
+
+  footer { padding: 3rem 1.5rem; background: var(--black); color: var(--white); text-align: center; font-size: 0.8rem; }
+
+  /* MOBILE OPTIMIZATION */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; flex-direction: column; gap: 1rem; }
+    .nav-right { flex-direction: column-reverse; gap: 1rem; width: 100%; }
+    .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .nav-links a { font-size: 0.75rem; }
+    
+    #home { padding: 6rem 1.5rem 4rem; }
+    section { padding: 4rem 1.5rem; }
+    
+    .grid-layout > * { grid-column: span 12 !important; }
+    .about-content-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+    .about-stats-grid { flex-direction: row !important; }
+    
+    .case-card { grid-template-columns: 1fr; }
+    .case-img { min-height: 250px; border-right: none; border-bottom: var(--border); }
+    .report-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+    
+    .tool-card { grid-column: span 6 !important; }
+    
+    .exp-row { grid-template-columns: 1fr !important; gap: 0.5rem !important; }
+    .exp-date { font-size: 0.8rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#home" class="nav-logo">NR.</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#cases">Work</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<div id="home">
-  <div class="hero-left fade-in">
-    <span class="hero-tag">UX Designer & Researcher</span>
-    <h1 class="hero-heading">
-      I advocate for users through<br>
-      <em>data-driven</em> design.
-    </h1>
-    <p class="hero-sub">
-      Multidisciplinary designer based in Ubatuba, Brazil — specializing in UX research, qualitative and quantitative data analysis, and building products people actually love to use.
-    </p>
-    <div class="hero-ctas">
-      <a href="#cases" class="btn-primary">View my work</a>
-      <a href="#contact" class="btn-secondary">Get in touch</a>
-    </div>
-  </div>
-  <div class="hero-right fade-in" style="transition-delay: 0.15s;">
-    <div class="hero-stats">
-      <div class="stat-box">
-        <span class="stat-num">4+</span>
-        <span class="stat-label">Years in UX</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-num">3</span>
-        <span class="stat-label">Case studies</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-num">10+</span>
-        <span class="stat-label">Projects delivered</span>
-      </div>
-      <div class="stat-box">
-        <span class="stat-num">3</span>
-        <span class="stat-label">Languages</span>
-      </div>
-    </div>
+<div id="case-modal" onclick="closeModal(event)">
+  <div class="modal-container" onclick="event.stopPropagation()">
+    <button class="close-modal" onclick="closeModal()">CLOSE X</button>
+    <div id="report-content"></div>
   </div>
 </div>
 
-<!-- ABOUT -->
+<div class="marquee">
+  <div class="marquee-content" data-i18n="marquee">
+    UX RESEARCH • PRODUCT DESIGN • DATA ANALYSIS • USER ADVOCACY • CRAFTING EXPERIENCES • FIGMA • FIREBASE • NOTION • CLAUDE AI • GITHUB • N8N • 
+  </div>
+</div>
+
+<nav>
+  <a href="#home" class="nav-logo">NR.</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about" data-i18n="nav_about">About</a></li>
+      <li><a href="#cases" data-i18n="nav_cases">Work</a></li>
+      <li><a href="#experience" data-i18n="nav_exp">Experience</a></li>
+      <li><a href="#skills" data-i18n="nav_skills">Skills</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+      <button class="lang-btn" onclick="setLanguage('pt')">PT</button>
+      <button class="lang-btn" onclick="setLanguage('es')">ES</button>
+    </div>
+  </div>
+</nav>
+
+<div id="home">
+  <span class="hero-tag" data-i18n="hero_tag">UX Research-driven Product Designer</span>
+  <h1 class="hero-heading" data-i18n="hero_title">MAKING THE COMPLEX SIMPLE THROUGH RESEARCH & DESIGN.</h1>
+  <p class="hero-sub" data-i18n="hero_sub">I bridge the gap between user needs and business goals through rigorous research, product thinking, and structured problem-solving.</p>
+  <a href="#contact" class="btn-bold" data-i18n="hero_btn">GET IN TOUCH</a>
+</div>
+
 <section id="about">
-  <div class="about-grid">
-    <div class="fade-in">
-      <p class="section-eyebrow">About me</p>
-      <h2 class="section-title">Translating user needs into actionable insights.</h2>
-      <p class="about-text">
-        Currently based in Ubatuba, São Paulo, I focus on conducting research, interviews, and analyzing data to build better digital products. My goal is to bridge the gap between user expectations and business goals through Design Thinking and Cross-functional Collaboration.
-      </p>
-      <p class="about-text">
-        I believe great UX starts with genuine empathy and ends with measurable impact. Every design decision I make is grounded in real user behavior, not assumptions.
-      </p>
-      <h3 style="font-size:0.85rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-muted); margin-bottom: 0.75rem; margin-top: 2rem;">Languages</h3>
-      <ul class="lang-list">
-        <li>Portuguese <span class="lang-level">Native</span></li>
-        <li>English <span class="lang-level">Professional</span></li>
-        <li>Spanish <span class="lang-level">Intermediate</span></li>
-      </ul>
+  <h2 class="section-title" data-i18n="about_title">THE STUFF I DO.</h2>
+  <div class="grid-layout">
+    <div class="card" style="grid-column: span 12;">
+      <h3 style="font-family:var(--font-display); margin-bottom: 1.5rem;" data-i18n="about_h3">DESIGN WITH EMPATHY</h3>
+      <div class="about-content-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem;">
+        <div>
+          <p data-i18n="about_p1">I transform complex insights into strategic design decisions. With a background in Design and extensive experience in both corporate environments and research labs, I bridge the gap between user needs and business goals. My work ensures that every digital solution is not only intuitive but also measurable and strategically aligned with the product vision.</p>
+          <p style="margin-top: 1rem;" data-i18n="about_p2">I believe great products are born from genuine user understanding. Every decision I make is grounded in real human behavior, uncovered through rigorous qualitative and quantitative methodologies. By advocating for the user, I create experiences that are not only functional but deeply meaningful and impactful.</p>
+        </div>
+        <div class="about-stats-grid" style="display:flex; flex-direction:column; gap: 1rem;">
+          <div style="background: var(--pink); color: white; padding: 1.5rem; border: var(--border); text-align: center; flex: 1;">
+            <h3 style="font-family:var(--font-display); font-size: 2.5rem;">5+</h3>
+            <p style="font-weight:700; font-size: 0.7rem;" data-i18n="about_impact">YEARS OF IMPACT</p>
+          </div>
+          <div style="background: var(--white); border: var(--border); padding: 1rem; text-align: center; flex: 1;">
+            <p style="font-weight:700;" data-i18n="about_langs">LANGUAGES</p>
+            <p style="font-size: 0.8rem;">PT / EN / ES</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="fade-in" style="transition-delay: 0.1s;">
-      <p class="section-eyebrow">Education</p>
-      <ul class="cert-list">
-        <li class="cert-item">
-          <p class="cert-name">Bachelor's Degree in Design</p>
-          <p class="cert-meta">Higher Education</p>
-        </li>
-        <li class="cert-item">
-          <p class="cert-name">Creating Interfaces</p>
-          <p class="cert-meta">Cursae · Dec 2022</p>
-        </li>
-        <li class="cert-item">
-          <p class="cert-name">UX Design: From Concept to Prototype</p>
-          <p class="cert-meta">University of Michigan · Mar 2022</p>
-        </li>
-        <li class="cert-item">
-          <p class="cert-name">Evaluating Designs with Users</p>
-          <p class="cert-meta">University of Michigan</p>
-        </li>
-        <li class="cert-item">
-          <p class="cert-name">Understanding User Needs</p>
-          <p class="cert-meta">University of Michigan · Apr 2021</p>
-        </li>
-        <li class="cert-item">
-          <p class="cert-name">Intro to User Experience Principles</p>
-          <p class="cert-meta">University of Michigan · Mar 2021</p>
-        </li>
-      </ul>
+
+    <div class="card" style="grid-column: span 12;">
+      <h3 style="font-family:var(--font-display); margin-bottom: 2rem;" data-i18n="edu_title">EDUCATION & CERTS</h3>
+      <div class="edu-list">
+        <div class="edu-item">
+          <div class="edu-inst" data-i18n="edu_uni_name">Higher Education</div>
+          <div class="edu-course" data-i18n="edu_degree">Bachelor's Degree in Design</div>
+          <div class="edu-details" data-i18n="edu_degree_details">Focused on visual and product strategy</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-inst">University of Michigan</div>
+          <div class="edu-course" data-i18n="edu_mich1_course">UX Design Specialization</div>
+          <div class="edu-details" data-i18n="edu_mich1_details">Principles and Process • Mar 2021</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-inst">University of Michigan</div>
+          <div class="edu-course" data-i18n="edu_mich2_course">Understanding User Needs</div>
+          <div class="edu-details" data-i18n="edu_mich2_details">Qualitative research • Apr 2021</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-inst">University of Michigan</div>
+          <div class="edu-course" data-i18n="edu_mich3_course">UX Design: From Concept to Prototype</div>
+          <div class="edu-details" data-i18n="edu_mich3_details">Wireframing • Mar 2022</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-inst">University of Michigan</div>
+          <div class="edu-course" data-i18n="edu_mich4_course">Evaluating Designs with Users</div>
+          <div class="edu-details" data-i18n="edu_mich4_details">Usability testing</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-inst">Cursae</div>
+          <div class="edu-course" data-i18n="edu_cursae_course">Creating Interfaces</div>
+          <div class="edu-details" data-i18n="edu_cursae_details">Dec 2022</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-inst">ETEC Dr. Emílio H. Aguilar</div>
+          <div class="edu-course" data-i18n="edu_etec_course">Logistics Technician</div>
+          <div class="edu-details" data-i18n="edu_etec_details">Class of 2021</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
+<section id="testimonials">
+  <h2 class="section-title" data-i18n="test_title">TESTIMONIALS.</h2>
+  <div class="grid-layout">
+    <div class="card" style="grid-column: span 6;">
+      <p style="font-style: italic;" data-i18n="test_henry">"Uma pessoa sempre presente e disposta a ajudar... material organizado e didático."</p>
+      <p style="margin-top: 1rem; font-weight: 700;">Henry Gandelman, MSc</p>
+    </div>
+    <div class="card" style="grid-column: span 6; background: var(--pink); color: white;">
+      <p style="font-style: italic;" data-i18n="test_rafa">"Dá para sorrir, trabalhar e se apoiar tudo junto? É assim com a Nicolli."</p>
+      <p style="margin-top: 1rem; font-weight: 700;">Rafaella Trindade</p>
+    </div>
+  </div>
+</section>
+
+<section id="cases">
+  <h2 class="section-title" data-i18n="cases_title">CASE STUDIES.</h2>
+  <div class="grid-layout">
+    <div class="card case-card">
+      <div class="case-img" style="background: var(--pink); color: white;">01</div>
+      <div class="case-content">
+        <span class="case-tag" data-i18n="case1_tag">Engineering & AI</span>
+        <h3 class="case-title" data-i18n="case1_title">Portfolio OS: The Maximalist Stack</h3>
+        <p class="case-text" data-i18n="case1_full">Engineering a multilingual, high-performance portfolio using Firebase and AI.</p>
+        <button class="btn-bold" onclick="openCase(1)" data-i18n="case_btn">Read Case</button>
+      </div>
+    </div>
+    <div class="card case-card">
+      <div class="case-img">02</div>
+      <div class="case-content">
+        <span class="case-tag" data-i18n="case2_tag">UX Research</span>
+        <h3 class="case-title" data-i18n="case2_title">Uncovering Behavioral Funnels</h3>
+        <p class="case-text" data-i18n="case2_full">Leading research to identify why 60% of users abandoned checkout.</p>
+        <button class="btn-bold" onclick="openCase(2)" data-i18n="case_btn">Read Case</button>
+      </div>
+    </div>
+    <div class="card case-card">
+      <div class="case-img" style="background: var(--black); color: var(--pink);">03</div>
+      <div class="case-content">
+        <span class="case-tag" data-i18n="case3_tag">Product Prototyping</span>
+        <h3 class="case-title" data-i18n="case3_title">Logistics Ops Dashboard</h3>
+        <p class="case-text" data-i18n="case3_full">Redesigning a legacy dashboard focused on speed and cognitive load.</p>
+        <button class="btn-bold" onclick="openCase(3)" data-i18n="case_btn">Read Case</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="experience">
-  <p class="section-eyebrow fade-in">Experience</p>
-  <h2 class="section-title fade-in">Where I've made an impact.</h2>
-  <div class="exp-list" style="margin-top: 2rem;">
-
-    <div class="exp-item fade-in">
+  <h2 class="section-title" data-i18n="exp_title">EXPERIENCE.</h2>
+  <div style="display: flex; flex-direction: column; gap: 2rem;">
+    <div class="card exp-row" style="display: grid; grid-template-columns: 200px 1fr; gap: 2rem;">
+      <div class="exp-date" style="font-family: var(--font-display); color: var(--pink);">MAR 2021 — NOW</div>
       <div>
-        <p class="exp-date">Mar 2021 – Present</p>
-        <p class="exp-company">Global ORG</p>
-      </div>
-      <div>
-        <h3 class="exp-role">UX Designer</h3>
-        <p class="exp-desc">Led end-to-end UX initiatives across international projects, applying research-driven design principles to advocate for user-centered experiences. Collaborated with cross-functional teams spanning product, engineering and business stakeholders to define and ship features aligned with user goals.</p>
-        <div class="exp-metrics">
-          <span class="metric-pill">International projects</span>
-          <span class="metric-pill">Cross-functional leadership</span>
-          <span class="metric-pill">Research-driven design</span>
-        </div>
+        <h3 style="font-family: var(--font-display); font-size: 1.2rem;">GLOBAL ORG • UX DESIGNER</h3>
+        <p data-i18n="exp_global">Leading end-to-end UX for international projects.</p>
       </div>
     </div>
-
-    <div class="exp-item fade-in">
+    <div class="card exp-row" style="display: grid; grid-template-columns: 200px 1fr; gap: 2rem;">
+      <div class="exp-date" style="font-family: var(--font-display); color: var(--pink);">2022 — 2023</div>
       <div>
-        <p class="exp-date">Jun 2022 – May 2023</p>
-        <p class="exp-company">Engineering Brasil · São Paulo, BR</p>
-      </div>
-      <div>
-        <h3 class="exp-role">UX Designer</h3>
-        <p class="exp-desc">Designed end-to-end interfaces for multiple product lines, contributing to the full product lifecycle from discovery through delivery. Facilitated design reviews, co-creation sessions, and handoff processes with engineering — reducing design-to-dev friction and improving release consistency.</p>
-        <div class="exp-metrics">
-          <span class="metric-pill">Full product lifecycle</span>
-          <span class="metric-pill">Design system contributions</span>
-          <span class="metric-pill">Stakeholder alignment</span>
-        </div>
+        <h3 style="font-family: var(--font-display); font-size: 1.2rem;">ENGINEERING BRASIL • UX DESIGNER</h3>
+        <p data-i18n="exp_eng">Full lifecycle design for multiple product lines.</p>
       </div>
     </div>
-
-    <div class="exp-item fade-in">
+    <div class="card exp-row" style="display: grid; grid-template-columns: 200px 1fr; gap: 2rem;">
+      <div class="exp-date" style="font-family: var(--font-display); color: var(--pink);">2021 — 2022</div>
       <div>
-        <p class="exp-date">Apr 2021 – Jun 2022</p>
-        <p class="exp-company">Solo Research Lab · São Paulo, BR</p>
-      </div>
-      <div>
-        <h3 class="exp-role">UX Researcher</h3>
-        <p class="exp-desc">Conducted qualitative and quantitative research — including user interviews, usability tests and surveys — to uncover pain points and validate product hypotheses. Synthesized insights into actionable recommendations that guided MVP scope and feature prioritization for early-stage products.</p>
-        <div class="exp-metrics">
-          <span class="metric-pill">User interviews</span>
-          <span class="metric-pill">MVP strategy</span>
-          <span class="metric-pill">Usability testing</span>
-          <span class="metric-pill">Data synthesis</span>
-        </div>
+        <h3 style="font-family: var(--font-display); font-size: 1.2rem;">SOLO RESEARCH LAB • UX RESEARCHER</h3>
+        <p data-i18n="exp_solo">Qualitative & quantitative research for MVPs.</p>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- CASE STUDIES -->
-<section id="cases" style="border-top: 1px solid var(--border);">
-  <p class="section-eyebrow fade-in">Selected work</p>
-  <h2 class="section-title fade-in">Case studies.</h2>
-  <p style="color:var(--ink-soft); max-width:520px; margin-top: -0.5rem; margin-bottom: 0;" class="fade-in">
-    A selection of projects where research and design worked together to create real impact.
-  </p>
-  <div class="cases-grid fade-in">
-
-    <div class="case-card">
-      <p class="case-num">01 / Research & Strategy</p>
-      <div class="case-tags">
-        <span class="case-tag">UX Research</span>
-        <span class="case-tag">Journey Mapping</span>
-      </div>
-      <h3 class="case-title">Reducing checkout drop-off for an e-commerce platform</h3>
-      <p class="case-desc">Led end-to-end research to identify why 60% of users abandoned checkout. Conducted 12 user interviews and analyzed funnel data to surface three critical friction points, then translated insights into a redesigned flow.</p>
-      <div class="case-outcomes">
-        <div class="outcome-row"><span>Drop-off reduction</span><span class="outcome-val">−34%</span></div>
-        <div class="outcome-row"><span>User interviews</span><span class="outcome-val">12 sessions</span></div>
-        <div class="outcome-row"><span>Time to complete</span><span class="outcome-val">−28%</span></div>
-      </div>
-      <a href="#contact" class="case-link">Request full case</a>
-    </div>
-
-    <div class="case-card">
-      <p class="case-num">02 / Product Design</p>
-      <div class="case-tags">
-        <span class="case-tag">Wireframing</span>
-        <span class="case-tag">Prototyping</span>
-      </div>
-      <h3 class="case-title">Redesigning an internal dashboard for a logistics team</h3>
-      <p class="case-desc">Partnered with a cross-functional team to redesign a legacy dashboard used daily by 80+ operators. Ran contextual inquiry sessions to map real workflows, then designed and tested a new information architecture from scratch.</p>
-      <div class="case-outcomes">
-        <div class="outcome-row"><span>Task completion rate</span><span class="outcome-val">+41%</span></div>
-        <div class="outcome-row"><span>Training time</span><span class="outcome-val">−50%</span></div>
-        <div class="outcome-row"><span>User satisfaction (NPS)</span><span class="outcome-val">+28pts</span></div>
-      </div>
-      <a href="#contact" class="case-link">Request full case</a>
-    </div>
-
-    <div class="case-card">
-      <p class="case-num">03 / UX Research</p>
-      <div class="case-tags">
-        <span class="case-tag">Usability Testing</span>
-        <span class="case-tag">Personas</span>
-      </div>
-      <h3 class="case-title">Defining the MVP for a fintech onboarding experience</h3>
-      <p class="case-desc">Facilitated discovery workshops and moderated usability tests with first-time users to validate early concepts for a mobile banking onboarding. Created personas and a prioritized feature backlog based on behavioral data.</p>
-      <div class="case-outcomes">
-        <div class="outcome-row"><span>Onboarding completion</span><span class="outcome-val">+52%</span></div>
-        <div class="outcome-row"><span>Features validated</span><span class="outcome-val">8 concepts</span></div>
-        <div class="outcome-row"><span>Time-on-task</span><span class="outcome-val">−40%</span></div>
-      </div>
-      <a href="#contact" class="case-link">Request full case</a>
-    </div>
-
-    <div class="case-card" style="display:flex; flex-direction:column; justify-content:center; align-items:flex-start; background: #1A1830; border-left: 3px solid var(--accent);">
-      <p style="font-family: var(--serif); font-size: 1.25rem; color: var(--ink); margin-bottom: 1rem; line-height: 1.3;">Have a project in mind?<br>Let's work together.</p>
-      <p style="font-size: 0.875rem; color: var(--ink-soft); margin-bottom: 1.5rem; line-height: 1.7;">I'm open to freelance collaborations, full-time opportunities, and research partnerships.</p>
-      <a href="#contact" class="btn-primary">Get in touch</a>
-    </div>
-
-  </div>
-</section>
-
-<!-- SKILLS -->
 <section id="skills">
-  <p class="section-eyebrow fade-in">Capabilities</p>
-  <h2 class="section-title fade-in">Core skills.</h2>
-  <div class="skills-wrapper">
-    <div class="fade-in">
-      <div class="skill-category">
-        <p class="skill-cat-label">Research</p>
-        <div class="skill-item">User Interviews <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:95%"></div></div></div>
-        <div class="skill-item">Usability Testing <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:90%"></div></div></div>
-        <div class="skill-item">Data Analysis <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:85%"></div></div></div>
-        <div class="skill-item">Journey Mapping <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div></div>
+  <h2 class="section-title" data-i18n="skills_title">SKILLS.</h2>
+  <div class="grid-layout">
+    <div class="card" style="grid-column: span 12;">
+      <div class="skill-cat">
+        <div class="skill-cat-title" data-i18n="skill_cat_research" style="font-family:var(--font-display); color:var(--pink); margin-bottom:1rem; text-transform:uppercase;">UX & Research</div>
+        <div class="skills-container">
+          <span class="skill-tag">UX Research</span><span class="skill-tag">Usability Testing</span>
+          <span class="skill-tag">User Interviewing</span><span class="skill-tag">Quali & Quanti</span>
+          <span class="skill-tag">Product Analysis</span>
+        </div>
       </div>
-      <div class="skill-category">
-        <p class="skill-cat-label">Design</p>
-        <div class="skill-item">Wireframing <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:88%"></div></div></div>
-        <div class="skill-item">Prototyping <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:82%"></div></div></div>
-        <div class="skill-item">Information Architecture <div class="skill-bar-bg"><div class="skill-bar-fill" style="width:80%"></div></div></div>
-      </div>
-    </div>
-    <div class="fade-in" style="transition-delay: 0.1s;">
-      <p class="skill-cat-label" style="margin-bottom:1.5rem;">Methods & tools</p>
-      <div class="skills-tags">
-        <span class="skill-tag">Design Thinking</span>
-        <span class="skill-tag">Personas</span>
-        <span class="skill-tag">Heuristic Evaluation</span>
-        <span class="skill-tag">A/B Testing</span>
-        <span class="skill-tag">Competitive Analysis</span>
-        <span class="skill-tag">Card Sorting</span>
-        <span class="skill-tag">Affinity Mapping</span>
-        <span class="skill-tag">Service Design</span>
-        <span class="skill-tag">Figma</span>
-        <span class="skill-tag">Maze</span>
-        <span class="skill-tag">Hotjar</span>
-        <span class="skill-tag">Miro</span>
-        <span class="skill-tag">Notion</span>
-        <span class="skill-tag">Google Analytics</span>
+      <div class="skill-cat" style="margin-top: 2rem;">
+        <div class="skill-cat-title" data-i18n="skill_cat_design" style="font-family:var(--font-display); color:var(--pink); margin-bottom:1rem; text-transform:uppercase;">Design & Strategy</div>
+        <div class="skills-container">
+          <span class="skill-tag">Product Design</span><span class="skill-tag">Interaction Design</span>
+          <span class="skill-tag">Figma</span><span class="skill-tag">Miro</span><span class="skill-tag">Prototyping</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <p class="section-eyebrow fade-in" style="justify-content:center;">Contact</p>
-  <h2 class="contact-heading fade-in">Let's build something great together.</h2>
-  <p class="contact-sub fade-in">I'm always open to discussing product design work, research projects, or partnership opportunities.</p>
-  <div class="contact-links fade-in">
-    <a href="mailto:nicollirezk5@gmail.com" class="contact-pill">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-      nicollirezk5@gmail.com
-    </a>
-    <a href="tel:+5511963251574" class="contact-pill">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.07 12a19.79 19.79 0 0 1-3-8.6A2 2 0 0 1 3 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      +55 (11) 96325-1574
-    </a>
-    <a href="https://www.linkedin.com/in/nicolli-rezk-496417206/" target="_blank" class="contact-pill">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-      LinkedIn
-    </a>
+<section id="stack">
+  <h2 class="section-title" data-i18n="stack_title">MODERN TECH STACK.</h2>
+  <div class="grid-layout">
+    <div class="card tool-card"><div class="tool-name">NOTION</div></div>
+    <div class="card tool-card"><div class="tool-name">FIREBASE</div></div>
+    <div class="card tool-card"><div class="tool-name">GITHUB</div></div>
+    <div class="card tool-card"><div class="tool-name">CLAUDE AI</div></div>
+    <div class="card tool-card"><div class="tool-name">N8N</div></div>
+    <div class="card tool-card"><div class="tool-name">TAILSCALE</div></div>
+    <div class="card tool-card"><div class="tool-name">OPENCLAW</div></div>
+    <div class="card tool-card"><div class="tool-name">COMMAND CENTER</div></div>
   </div>
-  <p style="font-size:0.8rem; color:var(--ink-muted);" class="fade-in">Based in Ubatuba, SP — Brazil · Available remotely worldwide</p>
 </section>
 
-<footer>
-  <span>© 2026 Nicolli Rezk. All rights reserved.</span>
-  <span style="color:var(--accent2);">UX Designer & Researcher</span>
-</footer>
+<section id="contact" style="text-align: center;">
+  <div class="card" style="display: inline-block; padding: clamp(2rem, 8vw, 4rem); border: 4px solid black; width: 100%; max-width: 600px;">
+    <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem);" data-i18n="contact_h2">LET'S BUILD TOGETHER.</h2>
+    <p style="margin-bottom: 2rem; font-weight: 700;">nicollirezk5@gmail.com</p>
+    <a href="mailto:nicollirezk5@gmail.com" class="btn-bold" data-i18n="contact_btn">EMAIL ME</a>
+  </div>
+</section>
+
+<footer><p data-i18n="footer_copy">© 2026 NICOLLI REZK • UX RESEARCH-DRIVEN PRODUCT DESIGNER</p></footer>
 
 <script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
+const translations = {
+  en: {
+    marquee: "UX RESEARCH • PRODUCT DESIGN • DATA ANALYSIS • USER ADVOCACY • CRAFTING EXPERIENCES • FIGMA • FIREBASE • NOTION • CLAUDE AI • GITHUB • N8N • ",
+    nav_about: "About", nav_cases: "Work", nav_exp: "Exp", nav_skills: "Skills", nav_contact: "Contact",
+    hero_tag: "UX Research-driven Product Designer",
+    hero_title: "MAKING THE COMPLEX SIMPLE THROUGH RESEARCH & DESIGN.",
+    hero_sub: "I bridge the gap between user needs and business goals through rigorous research, product thinking, and structured problem-solving.",
+    hero_btn: "GET IN TOUCH",
+    about_title: "THE STUFF I DO.", about_h3: "DESIGN WITH EMPATHY",
+    about_p1: "I transform complex insights into strategic design decisions. With a background in Design and extensive experience in both corporate environments and research labs, I bridge the gap between user needs and business goals. My work ensures that every digital solution is not only intuitive but also measurable and strategically aligned with the product vision.",
+    about_p2: "I believe great products are born from genuine user understanding. Every decision I make is grounded in real human behavior, uncovered through rigorous qualitative and quantitative methodologies. By advocating for the user, I create experiences that are not only functional but deeply meaningful and impactful.",
+    about_impact: "YEARS OF IMPACT", about_langs: "LANGS",
+    edu_title: "EDUCATION & CERTS",
+    edu_uni_name: "Higher Education", edu_degree: "Bachelor's Degree in Design", edu_degree_details: "Focused on visual and product strategy",
+    edu_mich1_course: "UX Design Specialization", edu_mich1_details: "Principles and Process • Mar 2021",
+    edu_mich2_course: "Understanding User Needs", edu_mich2_details: "Qualitative research • Apr 2021",
+    edu_mich3_course: "UX Design: From Concept to Prototype", edu_mich3_details: "Wireframing • Mar 2022",
+    edu_mich4_course: "Evaluating Designs with Users", edu_mich4_details: "Usability testing",
+    edu_cursae_course: "Creating Interfaces", edu_cursae_details: "Issued Dec 2022",
+    edu_etec_course: "Logistics Technician", edu_etec_details: "Class of 2021",
+    cases_title: "CASE STUDIES.",
+    case1_tag: "Engineering & AI", case1_title: "Portfolio OS: The Maximalist Stack", case1_full: "How I engineered a multilingual, high-performance portfolio using Firebase, GitHub, and AI automation.",
+    case2_tag: "UX Research", case2_title: "Uncovering Behavioral Funnels", case2_full: "Leading end-to-end research to identify why 60% of users abandoned checkout.",
+    case3_tag: "Product Prototyping", case3_title: "Logistics Ops Dashboard", case3_full: "Redesigning a legacy dashboard used daily by 80+ operators focused on speed.",
+    case_btn: "Read Case",
+    exp_title: "EXPERIENCE.", exp_global: "Leading end-to-end UX for international projects.",
+    exp_eng: "Full lifecycle design for multiple product lines.",
+    exp_solo: "Qualitative & quantitative research for MVPs.",
+    skills_title: "SKILLS.", stack_title: "MODERN TECH STACK.",
+    skill_cat_research: "UX & Research", skill_cat_design: "Design & Strategy",
+    test_title: "TESTIMONIALS.",
+    test_henry: "Always present and willing to help... organized and didactic materials.",
+    test_rafa: "Can we smile, work, and support each other all at once? That's Nicolli.",
+    contact_h2: "LET'S BUILD TOGETHER.", contact_btn: "EMAIL ME",
+    footer_copy: "© 2026 NICOLLI REZK • UX RESEARCH-DRIVEN PRODUCT DESIGNER"
+  },
+  pt: {
+    marquee: "PESQUISA UX • DESIGN DE PRODUTO • ANÁLISE DE DADOS • ADVOCACIA DO USUÁRIO • FIGMA • FIREBASE • NOTION • CLAUDE AI • ",
+    nav_about: "Sobre", nav_cases: "Trabalho", nav_exp: "Exp", nav_skills: "Skills", nav_contact: "Contato",
+    hero_tag: "UX Research-driven Product Designer",
+    hero_title: "TORNANDO O COMPLEXO SIMPLES ATRAVÉS DE PESQUISA E DESIGN.",
+    hero_sub: "Conecto necessidades do usuário a objetivos de negócio através de pesquisa rigorosa, pensamento de produto e resolução estruturada de problemas.",
+    hero_btn: "ENTRE EM CONTATO",
+    about_title: "O QUE EU FAÇO.", about_h3: "DESIGN COM EMPATIA",
+    about_p1: "Transformo insights complexos em decisões estratégicas de design. Com formação em Design e sólida experiência tanto em ambientes corporativos quanto em laboratórios de pesquisa, conecto as necessidades do usuário aos objetivos de negócio. Meu trabalho garante que cada solução digital seja não apenas intuitiva, mas também mensurável e estrategicamente alinhada à visão do produto.",
+    about_p2: "Acredito que grandes produtos nascem da compreensão genuína do usuário. Cada decisão que tomo é fundamentada no comportamento humano real, identificado através de metodologias qualitativas e quantitativas rigorosas. Ao advogar pelo usuário, crio experiências que não são apenas funcionais, mas profundamente relevantes e orientadas a impacto.",
+    about_impact: "ANOS DE IMPACTO", about_langs: "IDIOMAS",
+    edu_title: "EDUCAÇÃO E CERTIFICADOS",
+    edu_uni_name: "Ensino Superior", edu_degree: "Bacharelado em Design", edu_degree_details: "Foco em estratégia visual e de produto",
+    edu_mich1_course: "Especialização em UX Design", edu_mich1_details: "Princípios e Processos • Mar 2021",
+    edu_mich2_course: "Entendendo Necessidades", edu_mich2_details: "Pesquisa qualitativa • Abr 2021",
+    edu_mich3_course: "Do Conceito ao Protótipo", edu_mich3_details: "Wireframing • Mar 2022",
+    edu_mich4_course: "Avaliando Designs", edu_mich4_details: "Testes de usabilidade",
+    edu_cursae_course: "Criando Interfaces", edu_cursae_details: "Dez 2022",
+    edu_etec_course: "Técnico em Logística", edu_etec_details: "Formada em 2021",
+    cases_title: "ESTUDOS DE CASO.",
+    case1_tag: "Engenharia e IA", case1_title: "Portfolio OS: A Stack Maximalista", case1_full: "Como eu construí este portfólio multilíngue de alta performance usando Firebase, GitHub e automação por IA.",
+    case2_tag: "Pesquisa UX", case2_title: "Descobrindo Funis de Comportamento", case2_full: "Liderança de pesquisa para identificar por que 60% dos usuários abandonavam o checkout.",
+    case3_tag: "Prototipagem de Produto", case3_title: "Dashboard de Operações Logísticas", case3_full: "Redesign de um dashboard usado por 80+ operadores diários focado em velocidade.",
+    case_btn: "Ver Case",
+    exp_title: "EXPERIÊNCIA.", exp_global: "UX ponta a ponta para projetos internacionais.",
+    exp_eng: "Design de ciclo completo para várias linhas de produto.",
+    exp_solo: "Pesquisas qualitativas e quantitativas para MVPs.",
+    skills_title: "HABILIDADES.", stack_title: "STACK TECNOLÓGICA.",
+    skill_cat_research: "UX e Pesquisa", skill_cat_design: "Design e Estratégia",
+    test_title: "DEPOIMENTOS.",
+    test_henry: "Sempre presente e disposta a ajudar... material organizado e didático.",
+    test_rafa: "Dá para sorrir e trabalhar junto? É assim com a Nicolli.",
+    contact_h2: "VAMOS CONSTRUIR JUNTOS.", contact_btn: "ME ENVIE UM E-MAIL",
+    footer_copy: "© 2026 NICOLLI REZK • UX RESEARCH-DRIVEN PRODUCT DESIGNER"
+  },
+  es: {
+    marquee: "INVESTIGACIÓN UX • DISEÑO DE PRODUCTO • ANÁLISIS DE DATOS • FIGMA • FIREBASE • NOTION • CLAUDE AI • ",
+    nav_about: "Sobre mí", nav_cases: "Trabajo", nav_exp: "Exp", nav_skills: "Skills", nav_contact: "Contacto",
+    hero_tag: "UX Research-driven Product Designer",
+    hero_title: "HACIENDO LO COMPLEJO SIMPLE A TRAVÉS DE LA INVESTIGACIÓN.",
+    hero_sub: "Conecto las necesidades del usuario con los objetivos del negocio mediante investigación rigurosa.",
+    hero_btn: "CONTACTO",
+    about_title: "LO QUE HAGO.", about_h3: "DISEÑO CON EMPATÍA",
+    about_p1: "Transformo insights complejos en decisiones estratégicas de diseño. Mi trabalho garante que cada solución digital sea intuitiva y medible.",
+    about_p2: "Creo que los grandes produtos nascen de la comprensión del usuario. Cada decisión se basa en el comportamiento real.",
+    about_impact: "AÑOS DE IMPACTO", about_langs: "IDIOMAS",
+    edu_title: "EDUCACIÓN Y CERTIFICADOS",
+    edu_uni_name: "Enseñanza Superior", edu_degree: "Licenciatura en Diseño", edu_degree_details: "Enfoque en estrategia visual",
+    edu_mich1_course: "Especialización en UX Design", edu_mich1_details: "Principios y Procesos • Mar 2021",
+    edu_mich2_course: "Comprensión de Necesidades", edu_mich2_details: "Investigación • Abr 2021",
+    edu_mich3_course: "Concepto a Prototipo", edu_mich3_details: "Wireframing • Mar 2022",
+    edu_mich4_course: "Evaluación de Diseños", edu_mich4_details: "Pruebas",
+    edu_cursae_course: "Creando Interfaces", edu_cursae_details: "Dic 2022",
+    edu_etec_course: "Técnico en Logística", edu_etec_details: "Clase de 2021",
+    cases_title: "ESTUDIOS DE CASO.",
+    case1_tag: "Ingeniería y IA", case1_title: "Portfolio OS: La Stack Maximalista", case1_full: "Cómo construí este portfólio multilingüe utilizando Firebase, GitHub y IA.",
+    case2_tag: "Investigación UX", case2_title: "Descubriendo Embudos", case2_full: "Liderazgo de investigación para identificar por qué el 60% de los usuarios abandonaban.",
+    case3_tag: "Prototipado de Producto", case3_title: "Dashboard de Logística", case3_full: "Rediseño de un dashboard para 80+ operadores enfocado en velocidad.",
+    case_btn: "Ver Case",
+    exp_title: "EXPERIENCIA.", exp_global: "UX internacional de extremo a extremo.",
+    exp_eng: "Diseño de ciclo completo para múltiples productos.",
+    exp_solo: "Investigaciones cualitativas y cuantitativas para MVPs.",
+    skills_title: "HABILIDADES.", stack_title: "STACK TECNOLÓGICA.",
+    skill_cat_research: "UX e Investigación", skill_cat_design: "Diseño y Estrategia",
+    test_title: "TESTIMONIOS.",
+    test_henry: "Siempre presente y dispuesta a ayudar... material organizado.",
+    test_rafa: "¿Se puede trabajar y apoyarse? Así é con Nicolli.",
+    contact_h2: "VAMOS A CONSTRUIR JUNTOS.", contact_btn: "ENVÍAME UN EMAIL",
+    footer_copy: "© 2026 NICOLLI REZK • UX RESEARCH-DRIVEN PRODUCT DESIGNER"
+  }
+};
 
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+const caseReports = {
+  en: {
+    1: { body: "<div class='report-header'><h2 style='font-family:var(--font-display);font-size:2.5rem;'>Portfolio OS</h2><p>Engineering a designer's platform.</p></div><div class='report-grid'><div><p class='report-label'>Problem</p><p>Standard portfolios often lack performance and fail to showcase technical automation capabilities.</p><p class='report-label'>Solution</p><p>A Neo-Brutalist site using Firebase, GitHub, and custom i18n support.</p></div><div><p class='report-label'>Tech Stack</p><ul><li>Firebase Hosting</li><li>GitHub Actions</li><li>Custom i18n</li></ul></div></div>" },
+    2: { body: "<div class='report-header'><h2 style='font-family:var(--font-display);font-size:2.5rem;'>Behavioral Funnels</h2><p>E-commerce Checkout Optimization.</p></div><div class='report-grid'><div><p class='report-label'>The Context</p><p>60% of users were dropping off during checkout.</p><p class='report-label'>The Process</p><p>12 user interviews + funnel mapping. Identified friction in address entry.</p></div><div><p class='report-label'>The Impact</p><ul><li>34% Drop-off reduction</li><li>Faster time-to-task</li></ul></div></div>" },
+    3: { body: "<div class='report-header'><h2 style='font-family:var(--font-display);font-size:2.5rem;'>Logistics Dashboard</h2><p>Operational Efficiency Redesign.</p></div><div class='report-grid'><div><p class='report-label'>Challenge</p><p>Legacy system causing high cognitive load.</p><p class='report-label'>Approach</p><p>Contextual Inquiry and IA redesign.</p></div><div><p class='report-label'>Results</p><ul><li>-40% Cognitive load</li><li>Error reduction</li></ul></div></div>" }
+  },
+  pt: {
+    1: { body: "<div class='report-header'><h2 style='font-family:var(--font-display);font-size:2.5rem;'>Portfolio OS</h2><p>Engenharia de uma plataforma de designer.</p></div><div class='report-grid'><div><p class='report-label'>Problema</p><p>Portfólios padrão carecem de performance e não demonstram automação.</p><p class='report-label'>Solução</p><p>Site Neo-Brutalista com Firebase, GitHub e i18n customizado.</p></div><div><p class='report-label'>Tecnologias</p><ul><li>Firebase Hosting</li><li>GitHub Actions</li><li>Sistema i18n</li></ul></div></div>" },
+    2: { body: "<div class='report-header'><h2 style='font-family:var(--font-display);font-size:2.5rem;'>Funis de Comportamento</h2><p>Otimização de Checkout E-commerce.</p></div><div class='report-grid'><div><p class='report-label'>Contexto</p><p>60% dos usuários abandonavam o checkout.</p><p class='report-label'>Processo</p><p>12 entrevistas moderadas e mapeamento da jornada.</p></div><div><p class='report-label'>Impacto</p><ul><li>34% Redução de abandono</li><li>Fluxo acelerado</li></ul></div></div>" },
+    3: { body: "<div class='report-header'><h2 style='font-family:var(--font-display);font-size:2.5rem;'>Dashboard Logístico</h2><p>Redesign para Eficiência Operacional.</p></div><div class='report-grid'><div><p class='report-label'>Desafio</p><p>Sistema legado com alta carga cognitiva.</p><p class='report-label'>Abordagem</p><p>Inquérito Contextual e redesign de arquitetura.</p></div><div><p class='report-label'>Resultados</p><ul><li>-40% Carga cognitiva</li><li>Velocidade aumentada</li></ul></div></div>" }
+  },
+  es: {
+    1: { body: "<div class='report-header'><h2>Portfolio OS</h2><p>Ingeniería de plataforma.</p></div>" },
+    2: { body: "<div class='report-header'><h2>Funnels</h2><p>Optimización e-commerce.</p></div>" },
+    3: { body: "<div class='report-header'><h2>Logística</h2><p>Rediseño operacional.</p></div>" }
+  }
+};
 
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
+function openCase(id) {
+  const lang = localStorage.getItem('preferred_lang') || 'en';
+  const report = caseReports[lang][id] || caseReports['en'][id];
+  document.getElementById('report-content').innerHTML = report.body;
+  document.getElementById('case-modal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(e) {
+  document.getElementById('case-modal').style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+function setLanguage(lang) {
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if(btn.textContent.toLowerCase() === lang) btn.classList.add('active');
   });
-});
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang][key]) el.innerHTML = translations[lang][key];
+  });
+  localStorage.setItem('preferred_lang', lang);
+}
+
+const savedLang = localStorage.getItem('preferred_lang') || 'en';
+setLanguage(savedLang);
 </script>
 </body>
 </html>
