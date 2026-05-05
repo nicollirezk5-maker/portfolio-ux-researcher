@@ -682,34 +682,65 @@ const caseReports = {
     1: { body: `<div class='report-header'><h2 style='font-family:var(--font-display);font-size:2.5rem;'>Portfolio OS</h2><p>Ingeniería y Automatización.</p></div>
         <div class='report-grid'>
           <div>
-            <p class='report-label'>Metodología</p>
-            <p>Atomic Design y automatización vía N8N e i18n personalizado.</p>
+            <p class='report-label'>Problema</p>
+            <p>Los portafolios estándar suelen ser estáticos y no demuestran habilidades técnicas. Necesitaba una plataforma que fuera tanto un producto como un showcase.</p>
+            <p class='report-label'>Solución</p>
+            <p>Sitio Neo-Brutalista con Firebase, GitHub y soporte i18n personalizado. Automatizado vía N8N para captura de leads y Notion para gestión.</p>
+            <p class='report-label'>Metodología de Diseño</p>
+            <p>Aplicación de <strong>Atomic Design</strong> para garantizar la modularidad. Permitió cambiar paleta de colores y tipografía en menos de 5 minutos vía variables CSS.</p>
+            <p class='report-label'>Proceso Técnico</p>
+            <p>Firebase Hosting para velocidad global, GitHub Actions para despliegue continuo y sistema i18n en JS puro sin librerías externas.</p>
           </div>
           <div>
+            <p class='report-label'>Flujo de Automatización</p>
+            <p>Formulario → N8N Webhook → IA Lead Scoring (Claude) → Notion → Notificación en Telegram en tiempo real.</p>
+            <p class='report-label'>Stack</p>
+            <ul><li>Firebase Hosting</li><li>GitHub Actions</li><li>Custom i18n</li><li>N8N Automation</li><li>Notion API</li></ul>
             <p class='report-label'>Caso Ficticio</p>
-            <p><strong>Lead Magnet:</strong> Auditoría UX automatizada vía AI que genera un PDF en tiempo real.</p>
+            <p><strong>Lead Magnet:</strong> Auditoría UX automatizada vía AI que genera un PDF de 10 páginas para el usuario en tiempo real al ingresar su URL. Aumentaría la calidad de leads en un 300%.</p>
           </div>
         </div>` },
     2: { body: `<div class='report-header'><h2 style='font-family:var(--font-display);font-size:2.5rem;'>Funnels</h2><p>Optimización e-commerce.</p></div>
         <div class='report-grid'>
           <div>
-            <p class='report-label'>Insights</p>
-            <p>Reducción del 34% en el abandono mediante investigación cualitativa.</p>
+            <p class='report-label'>Contexto</p>
+            <p>Abandono del 60% en el checkout. Los datos sugerían un bug, pero la investigación cualitativa reveló problemas de fricción emocional.</p>
+            <p class='report-label'>Personas</p>
+            <ul>
+              <li><strong>La Speedrunner:</strong> Quiere comprar en <30s. Se frustra con el registro obligatorio.</li>
+              <li><strong>El Escéptico:</strong> Analiza sellos de seguridad y costos. Abandona si los costos aparecen tarde.</li>
+            </ul>
+            <p class='report-label'>Proceso</p>
+            <p>12 entrevistas moderadas y mapeo de jornada. Identificamos que el campo 'CPF' en Brasil causaba fricción antes de mostrar el costo de envío.</p>
+            <p class='report-label'>Resultado</p>
+            <p>Reducción del 34% en el abandono y aumento del 22% en la conversión total mediante la simplificación de datos.</p>
           </div>
           <div>
+            <p class='report-label'>Insights de Investigación</p>
+            <p><strong>Heatmaps:</strong> El 45% de los usuarios hacían clic en sellos estáticos, indicando necesidad de validación de confianza más explícita.</p>
+            <p class='report-label'>Impacto</p>
+            <ul><li>34% Reducción de abandono</li><li>22% Aumento de conversión</li><li>Flujo más ágil</li></ul>
             <p class='report-label'>Caso Ficticio</p>
-            <p><strong>Predictive UI:</strong> La interfaz se simplifica automáticamente si detecta frustración.</p>
+            <p><strong>Predictive UI:</strong> Un modelo de ML detecta patrones de frustración en el mouse y simplifica la interfaz dinámicamente, ofreciendo 'Guest Checkout' en un clic.</p>
           </div>
         </div>` },
     3: { body: `<div class='report-header'><h2 style='font-family:var(--font-display);font-size:2.5rem;'>Logística</h2><p>Rediseño operacional.</p></div>
         <div class='report-grid'>
           <div>
-            <p class='report-label'>IA y UX</p>
-            <p>Card Sorting y reducción del 40% en la carga cognitiva.</p>
+            <p class='report-label'>Desafío</p>
+            <p>Sistema legado con interfaz de 1998 causando alta carga cognitiva y errores frecuentes en 80+ operadores diarios.</p>
+            <p class='report-label'>Arquitectura de Información</p>
+            <p><strong>Card Sorting Cerrado</strong> con 15 operadores senior para reestructurar la navegación, reduciendo el tiempo de búsqueda en un 50%.</p>
+            <p class='report-label'>Enfoque</p>
+            <p>Inquiry Contextual y shadowing. Aplicación de la Ley de Miller y Progressive Disclosure para enfocar en el despacho de rutas.</p>
           </div>
           <div>
+            <p class='report-label'>Accesibilidad (WCAG 2.1)</p>
+            <p>Temas de alto contraste y atajos de teclado para 'power users', reduciendo el movimiento del mouse en un 60%.</p>
+            <p class='report-label'>Resultados</p>
+            <ul><li>-40% Carga cognitiva (NASA-TLX)</li><li>15% Reducción de errores</li><li>Onboarding reducido a la mitad</li></ul>
             <p class='report-label'>Caso Ficticio</p>
-            <p><strong>Offline Crisis:</strong> Modo de navegación por rádio para contingencias globales.</p>
+            <p><strong>Offline Crisis:</strong> Modo de navegación por radio para contingencias globales de GPS, permitiendo operar con mapas SVG vectorizados sin conexión.</p>
           </div>
         </div>` }
   }
