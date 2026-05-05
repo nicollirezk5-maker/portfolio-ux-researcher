@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "portfolio-nicolli",
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
